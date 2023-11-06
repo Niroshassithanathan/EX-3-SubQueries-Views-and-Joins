@@ -52,7 +52,9 @@ VALUES (7934, 'MILLER', 'CLERK', 7782, TO_DATE('23-JAN-82', 'DD-MON-RR'), 1300, 
 ## Create department table
 ```
 CREATE TABLE DEPT (DEPTNO NUMBER(2) PRIMARY KEY,DNAME VARCHAR2(14),LOC VARCHAR2(13));
-Insert the values in the department table
+```
+## Insert the values in the department table
+```
 INSERT INTO DEPT (DEPTNO, DNAME, LOC) VALUES (10, 'ACCOUNTING', 'NEW YORK');
 
 INSERT INTO DEPT (DEPTNO, DNAME, LOC) VALUES (20, 'RESEARCH', 'DALLAS');
@@ -61,54 +63,54 @@ INSERT INTO DEPT (DEPTNO, DNAME, LOC) VALUES (30, 'SALES', 'CHICAGO');
 
 INSERT INTO DEPT (DEPTNO, DNAME, LOC) VALUES (40, 'OPERATIONS', 'BOSTON');
 ```
-## Q1) List the name of the employees whose salary is greater than that of employee with empno 7566.
-## QUERY:
+### Q1) List the name of the employees whose salary is greater than that of employee with empno 7566.
+### QUERY:
 ```
 CREATE VIEW details AS SELECT ENAME FROM EMP WHERE SALARY >(select SALARY from EMP where EMPNO=7566);
 ```
-## OUTPUT:
+### OUTPUT:
 ![image](https://github.com/Niroshassithanathan/EX-3-SubQueries-Views-and-Joins/assets/121418437/56c47f64-6d2b-4d77-a685-384cddc38905)
 
-## Q2) List the ename,job,sal of the employee who get minimum salary in the company.
-## QUERY:
+### Q2) List the ename,job,sal of the employee who get minimum salary in the company.
+### QUERY:
 ```
  CREATE VIEW minimum AS select ENAME,JOB,SALARY from EMP where SALARY =(select MIN(SALARY) from EMP);
 ```
-## OUTPUT:
+### OUTPUT:
 ![image](https://github.com/Niroshassithanathan/EX-3-SubQueries-Views-and-Joins/assets/121418437/814613c9-1e49-49e4-b616-a3742751f412)
 
-## Q3) List ename, job of the employees who work in deptno 10 and his/her job is any one of the job in the department ‘SALES’.
-## QUERY:
+### Q3) List ename, job of the employees who work in deptno 10 and his/her job is any one of the job in the department ‘SALES’.
+### QUERY:
 ```
 select ENAME,JOB from EMP where  DEPTNO=10 AND JOB='SALESMAN';
 ```
-## OUTPUT:
+### OUTPUT:
 ![image](https://github.com/Niroshassithanathan/EX-3-SubQueries-Views-and-Joins/assets/121418437/0b60507a-f07e-4921-b289-4bc3c9545363)
 
-## Q4) Create a view empv5 (for the table emp) that contains empno, ename, job of the employees who work in dept 10.
-## QUERY:
+### Q4) Create a view empv5 (for the table emp) that contains empno, ename, job of the employees who work in dept 10.
+### QUERY:
 ```
 create view empv5 as select EMPNO,ENAME,JOB from EMP where DEPTNO=10;
 ```
-## OUTPUT:
+### OUTPUT:
 ![image](https://github.com/Niroshassithanathan/EX-3-SubQueries-Views-and-Joins/assets/121418437/aaba7890-b744-462f-bee5-ac68638753aa)
 
-## Q5) Create a view with column aliases empv30 that contains empno, ename, sal of the employees who work in dept 30. Also display the contents of the view.
-## QUERY:
+### Q5) Create a view with column aliases empv30 that contains empno, ename, sal of the employees who work in dept 30. Also display the contents of the view.
+### QUERY:
 ```
 create view empv30 AS select EMPNO,ENAME,SALARY from EMP where DEPTNO=30;
 ```
-## OUTPUT:
+### OUTPUT:
 ![image](https://github.com/Niroshassithanathan/EX-3-SubQueries-Views-and-Joins/assets/121418437/8c5a7120-1134-406c-8835-0ea14284a14c)
 
-## Q6) Update the view empv5 by increasing 10% salary of the employees who work as ‘CLERK’. Also confirm the modifications in emp table
-## QUERY:
+### Q6) Update the view empv5 by increasing 10% salary of the employees who work as ‘CLERK’. Also confirm the modifications in emp table
+### QUERY:
 ```
 update EMP set SALARY=SALARY*1.1 WHERE JOB='clerk';
 
 create view empv5 as select EMPNO,ENAME,SALARY,JOB from EMP;
 ```
-## OUTPUT:
+### OUTPUT:
 ![image](https://github.com/Niroshassithanathan/EX-3-SubQueries-Views-and-Joins/assets/121418437/7111470e-f199-4d2b-b7e2-29583e0c490e)
 
 ## Create a Customer1 Table
@@ -139,38 +141,38 @@ INSERT INTO Salesman1 (salesman_id, name, city, commission) VALUES(5006, 'Mc Lyo
 INSERT INTO Salesman1 (salesman_id, name, city, commission) VALUES(5007, 'Paul Adam', 'Rome', 0.13);
 INSERT INTO Salesman1 (salesman_id, name, city, commission) VALUES(5003, 'Lauson Hen', 'San Jose', 0.12);
 ```
-## Q7) Write a SQL query to find the salesperson and customer who reside in the same city. Return Salesman, cust_name and city.
-## QUERY:
+### Q7) Write a SQL query to find the salesperson and customer who reside in the same city. Return Salesman, cust_name and city.
+### QUERY:
 ```
 select s.name,c.cust_name,s.city from salesman1 as s ,customer1 as c where s.city=c.city;
 ```
-## OUTPUT:
+### OUTPUT:
 ![image](https://github.com/Niroshassithanathan/EX-3-SubQueries-Views-and-Joins/assets/121418437/5fbb9b37-e243-4e30-9bb6-a364a806c661)
 
-## Q8) Write a SQL query to find salespeople who received commissions of more than 13 percent from the company. Return Customer Name, customer city, Salesman, commission.
-## QUERY:
+### Q8) Write a SQL query to find salespeople who received commissions of more than 13 percent from the company. Return Customer Name, customer city, Salesman, commission.
+### QUERY:
 ```
 select s.name,c.cust_name,c.city,s.commission from salesman1 as s inner join customer1 as c on s.city=c.city where s.commission>0.13;
 ```
-## OUTPUT:
+### OUTPUT:
 ![image](https://github.com/Niroshassithanathan/EX-3-SubQueries-Views-and-Joins/assets/121418437/ba56f2ff-1a79-415e-8c51-dda5c4fe1558)
 
-## Q9) Perform Natural join on both tables
+### Q9) Perform Natural join on both tables
 ## QUERY:
 ```
  select s.name,c.cust_name,c.city,s.commission from salesman1 as s natural join customer1 as c where s.commission>0.13;
 ```
-## OUTPUT:
+### OUTPUT:
 ![image](https://github.com/Niroshassithanathan/EX-3-SubQueries-Views-and-Joins/assets/121418437/c07b8855-992f-4d1a-9a98-3c6d39f833b3)
 
-## Q10) Perform Left and right join on both tables
-## QUERY:
+### Q10) Perform Left and right join on both tables
+### QUERY:
 ```
 select s.name,c.cust_name,c.city,s.commission from salesman1 as s left join customer1 as c on s.salesman_id=c.salesman_id where s.commission>0.13;
 
 select s.name,c.cust_name,c.city,s.commission from salesman1 as s right join customer1 as c on s.salesman_id=c.salesman_id where s.commission>0.13;
 ```
-## OUTPUT:
+### OUTPUT:
 ![image](https://github.com/Niroshassithanathan/EX-3-SubQueries-Views-and-Joins/assets/121418437/d1d07c14-8ed3-4018-8778-d8353b260ff1)
 
 ## RESULT:
